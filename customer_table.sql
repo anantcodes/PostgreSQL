@@ -30,3 +30,11 @@ SELECT DISTINCT first_name from customer_table;
 SELECT DISTINCT first_name,age from customer_table;
 
 SELECT DISTINCT * from customer_table;
+
+SELECT first_name from customer_table WHERE age=25;
+
+SELECT DISTINCT first_name from customer_table WHERE age=25;
+
+SELECT DISTINCT first_name from customer_table WHERE age>25;
+
+SELECT * from customer_table WHERE first_name = 'Gee'; 
