@@ -24,3 +24,9 @@ SELECT first_name from Customer_table;
 SELECT first_name,last_name from Customer_table;
 
 SELECT * from Customer_table;
+
+SELECT DISTINCT first_name from customer_table;
+
+SELECT DISTINCT first_name,age from customer_table;
+
+SELECT DISTINCT * from customer_table;
