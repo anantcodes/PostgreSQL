@@ -18,3 +18,9 @@ INSERT INTO Customer_table VALUES
 copy Customer_table from '/Users/postgres (Deleted)/copy.csv' DELIMITER ',' CSV HEADER;
 
 copy Customer_table from '/Users/postgres (Deleted)/copytext.txt' DELIMITER ',';
+
+SELECT first_name from Customer_table;
+
+SELECT first_name,last_name from Customer_table;
+
+SELECT * from Customer_table;
