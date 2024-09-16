@@ -46,3 +46,11 @@ SELECT first_name, last_name, age from customer_table WHERE age<20 OR age>=30;
 SELECT * from customer_table WHERE NOT age=25;
 
 SELECT * from customer_table WHERE NOT age=25 AND NOT first_name='Jay' ;
+
+SELECT * from customer_table WHERE cust_id = 2;
+
+UPDATE customer_table SET last_name='Pe', age=17 where cust_id=2;
+
+SELECT * from customer_table;
+
+UPDATE customer_table SET email_id='gee@gmail.com' WHERE first_name='Gee' or first_name='gee';
