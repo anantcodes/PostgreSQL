@@ -66,3 +66,39 @@ SELECT * from customer_table;
 DELETE from customer_table;
 
 SELECT * from customer_table;
+
+ALTER TABLE customer_table ADD test varchar(255);
+
+ALTER TABLE customer_table DROP test;
+
+SELECT * from customer_table;
+
+ALTER TABLE customer_table ADD test varchar(255);
+
+ALTER TABLE customer_table DROP COLUMN test;
+
+ALTER TABLE customer_table ALTER COLUMN age TYPE varchar(255);
+
+SELECT * from customer_table;
+
+ALTER TABLE customer_table RENAME COLUMN email_id TO customer_email;
+
+ALTER TABLE customer_table ALTER COLUMN cust_id SET NOT NULL;
+
+INSERT INTO customer_table(first_name,last_name, age,customer_email) VALUES ('aa','bb','25','ab@xyz.com');
+
+ALTER TABLE customer_table ALTER COLUMN cust_id DROP NOT NULL;
+
+ALTER TABLE customer_table ADD CONSTRAINT cust_id CHECK (cust_id>0);
+
+INSERT INTO customer_table VALUES (-1,'cc','dd','67','cd@xyz.com');
+
+ALTER TABLE customer_table ADD PRIMARY KEY (cust_id);
+
+DELETE from customer_table;
+
+INSERT INTO customer_table VALUES (1,'c','dd','67','cd@xyz.com');
+
+SELECT * from customer_table;
+
+ALTER TABLE customer_table ADD PRIMARY KEY (cust_id);
