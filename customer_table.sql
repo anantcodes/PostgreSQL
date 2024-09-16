@@ -54,3 +54,15 @@ UPDATE customer_table SET last_name='Pe', age=17 where cust_id=2;
 SELECT * from customer_table;
 
 UPDATE customer_table SET email_id='gee@gmail.com' WHERE first_name='Gee' or first_name='gee';
+
+DELETE from customer_table WHERE cust_id=6;
+
+SELECT * from customer_table;
+
+DELETE from customer_table WHERE age>30;
+
+SELECT * from customer_table;
+
+DELETE from customer_table;
+
+SELECT * from customer_table;
