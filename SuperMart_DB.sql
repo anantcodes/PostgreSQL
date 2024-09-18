@@ -87,3 +87,20 @@ SELECT sales FROM sales WHERE order_date BETWEEN '2015-06-01' AND '2015-06-30' O
 SELECT MAX(sales) AS "Minimum sales value June 15" FROM sales WHERE order_date BETWEEN '2015-06-01' AND '2015-06-30';
 
 SELECT sales FROM sales WHERE order_date BETWEEN '2015-06-01' AND '2015-06-30' ORDER BY sales DESC;
+
+/* GROUP BY */
+
+SELECT * from customer;
+
+SELECT region, COUNT(customer_id) as customer_count FROM customer GROUP BY region;
+
+SELECT region, AVG(age) as age, COUNT(customer_id) as customer_count FROM customer GROUP BY region;
+
+SELECT region,state, AVG(age) as age, COUNT(customer_id) as customer_count FROM customer GROUP BY region, state;
+
+SELECT product_id, SUM(quantity) AS quantity_sold FROM sales GROUP BY product_id ORDER BY quantity_sold DESC;
+
+SELECT customer_id, MIN(sales) AS minimum_sales, MAX(sales) AS max_sales, AVG(sales) AS average_sales, SUM(sales) AS total_sales
+FROM sales GROUP BY customer_id
+ORDER BY total_sales DESC
+LIMIT 5;
