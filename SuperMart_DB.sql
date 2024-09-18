@@ -59,3 +59,31 @@ SELECT * FROM customer WHERE age > 25 ORDER BY age ASC LIMIT 10;
 /* AS */
 
 SELECT customer_id AS "Serial Number", customer_name AS name, age as customer_age from customer;
+
+/* COUNT */
+
+SELECT COUNT(*) FROM sales;
+
+SELECT COUNT(order_line) AS "Number of Products Ordered", COUNT (DISTINCT order_id) AS "Number of Orders" FROM sales WHERE customer_id='CG-12520';
+
+/* SUM */
+
+SELECT SUM(Profit) AS "Total Profit" FROM sales;
+
+SELECT SUM(quantity) AS "Total Quantity" FROM sales WHERE product_id='FUR-TA-10000577';
+
+/* AVERAGE */
+
+SELECT AVG(age) AS "Average Customer Age" FROM customer;
+
+SELECT AVG(sales*.10) AS "Average Commission Value" FROM sales;
+
+/* MIN & MAX */
+
+SELECT MIN(sales) AS "Minimum sales value June 15" FROM sales WHERE order_date BETWEEN '2015-06-01' AND '2015-06-30';
+
+SELECT sales FROM sales WHERE order_date BETWEEN '2015-06-01' AND '2015-06-30' ORDER BY sales ASC;
+
+SELECT MAX(sales) AS "Minimum sales value June 15" FROM sales WHERE order_date BETWEEN '2015-06-01' AND '2015-06-30';
+
+SELECT sales FROM sales WHERE order_date BETWEEN '2015-06-01' AND '2015-06-30' ORDER BY sales DESC;
