@@ -112,3 +112,12 @@ SELECT region, COUNT(customer_id) AS customer_count FROM customer GROUP BY regio
 SELECT region, COUNT(customer_id) AS customer_count FROM customer WHERE customer_name LIKE 'A%' GROUP BY region;
 
 SELECT region, COUNT(customer_id) AS customer_count FROM customer WHERE customer_name LIKE 'A%' GROUP BY region HAVING COUNT(customer_id) > 15;
+
+/* CAASE */
+
+SELECT *, CASE
+			WHEN age<30 THEN 'Young'
+			WHEN age>60 THEN 'SENIOR CITIZEN'
+			ELSE 'Middle Aged'
+			END AS Age_category
+FROM customer;
