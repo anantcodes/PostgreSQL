@@ -104,3 +104,11 @@ SELECT customer_id, MIN(sales) AS minimum_sales, MAX(sales) AS max_sales, AVG(sa
 FROM sales GROUP BY customer_id
 ORDER BY total_sales DESC
 LIMIT 5;
+
+/* HAVING */ 
+
+SELECT region, COUNT(customer_id) AS customer_count FROM customer GROUP BY region HAVING COUNT (customer_id)>200;
+
+SELECT region, COUNT(customer_id) AS customer_count FROM customer WHERE customer_name LIKE 'A%' GROUP BY region;
+
+SELECT region, COUNT(customer_id) AS customer_count FROM customer WHERE customer_name LIKE 'A%' GROUP BY region HAVING COUNT(customer_id) > 15;
