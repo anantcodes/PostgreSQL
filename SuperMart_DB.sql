@@ -133,3 +133,20 @@ select count(distinct customer_id) from sales_2015;--578
 /* Customers with age between 20 and 60 */
 create table customer_20_60 as select * from customer where age between 20 and 60;
 select count (*) from customer_20_60;--597
+
+/* INNER JOIN */
+
+SELECT customer_id FROM sales_2015 ORDER BY customer_id;
+SELECT customer_id FROM customer_20_60 ORDER BY customer_id;
+
+SELECT
+	a.order_line,
+	a.product_id,
+	a.customer_id,
+	a.sales,
+	b.customer_name,
+	b.age
+FROM sales_2015 AS a
+INNER JOIN customer_20_60 AS b
+ON a.customer_id = b.customer_id
+ORDER BY customer_id;
