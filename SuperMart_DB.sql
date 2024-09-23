@@ -202,3 +202,18 @@ FROM sales_2015 AS a
 FULL JOIN customer_20_60 AS b
 ON a.customer_id = b.customer_id
 ORDER BY a.customer_id,b.customer_id;
+
+/* CROSS JOIN */
+
+CREATE TABLE month_values (MM integer);
+CREATE TABLE year_values (YYYY integer);
+
+INSERT INTO MONTH_values VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12);
+INSERT INTO year_values VALUES (2011), (2012),(2013),(2014),(2015),(2016),(2017),(2018),(2019);
+
+SELECT * FROM month_values;
+SELECT * FROM year_values;
+
+SELECT a.YYYY,b.MM
+FROM year_values AS a, month_values AS b
+ORDER BY a.YYYY, b.MM;
