@@ -217,3 +217,10 @@ SELECT * FROM year_values;
 SELECT a.YYYY,b.MM
 FROM year_values AS a, month_values AS b
 ORDER BY a.YYYY, b.MM;
+
+/* INTERSECT */
+
+SELECT customer_id FROM sales_2015
+INTERSECT
+SELECT customer_id FROM customer_20_60
+
