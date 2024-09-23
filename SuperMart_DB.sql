@@ -184,3 +184,21 @@ FROM sales_2015 AS a
 RIGHT JOIN customer_20_60 AS b
 ON a.customer_id = b.customer_id
 ORDER BY customer_id;
+
+/* FULL OUTER JOIN */
+
+SELECT customer_id FROM sales_2015 ORDER BY customer_id;
+SELECT customer_id FROM customer_20_60 ORDER BY customer_id;
+
+SELECT
+	a.order_line,
+	a.product_id,
+	a.customer_id,
+	a.sales,
+	b.customer_name,
+	b.age,
+	b.customer_id
+FROM sales_2015 AS a
+FULL JOIN customer_20_60 AS b
+ON a.customer_id = b.customer_id
+ORDER BY a.customer_id,b.customer_id;
