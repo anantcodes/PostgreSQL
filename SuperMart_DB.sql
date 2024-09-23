@@ -269,5 +269,9 @@ SELECT * FROM logistics;
 
 DROP VIEW logistics;
 
+/* INDEX */
 
+CREATE INDEX mon_idx
+ON month_values(MM)
 
+DROP INDEX mon_idx;
