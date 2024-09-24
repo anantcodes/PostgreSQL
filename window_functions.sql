@@ -34,3 +34,14 @@ FROM customer_order;
 
 SELECT * FROM (SELECT customer_id, customer_name, state, order_num, row_number() OVER (PARTITION BY state ORDER BY order_num DESC) AS row_n
 FROM customer_order) AS a WHERE a.row_n<=3;
+
+/* rank & dense rank */
+
+SELECT customer_id, customer_name, state, order_num, 
+row_number() OVER (PARTITION BY state ORDER BY order_num DESC) AS row_n,
+rank() OVER (PARTITION BY state ORDER BY order_num DESC) AS rank_n,
+dense_rank() OVER (PARTITION BY state ORDER BY order_num DESC) AS dense_rank_n
+FROM customer_order;
+
+
+
