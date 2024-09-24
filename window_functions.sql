@@ -108,3 +108,10 @@ SELECT * FROM order_rollup_state;
 SELECT *,
 SUM(sales) OVER (PARTITION BY state) AS sales_state_total
 FROM order_rollup_state;
+
+/* Running Total/SUM window function */
+
+SELECT *,
+SUM(sales) OVER (PARTITION BY state) AS sales_state_total,
+SUM(sales) OVER (PARTITION BY state ORDER BY order_date) AS running_total
+FROM order_rollup_state;
