@@ -1,6 +1,6 @@
 /* Window functions */
 
--- Row Number
+/* Row Number */
 
 SELECT * FROM customer LIMIT 10;
 
@@ -68,7 +68,7 @@ ntile(5) OVER (PARTITION BY state ORDER BY order_num DESC) AS tile_n
 FROM customer_order) as a WHERE a.tile_n = 5; -- for bottom 20% customers
 
 
-/* Average function */
+/* Average window function */
 
 SELECT * FROM customer_order;
 
@@ -81,3 +81,9 @@ FROM customer_order;
 SELECT * FROM (SELECT customer_id, customer_name, state, sales_tot as revenue,
 avg(sales_tot) OVER (PARTITION BY state) AS avg_revenue
 FROM customer_order) AS a WHERE a.revenue < a.avg_revenue;
+
+/* COUNT window function */
+
+SELECT customer_id, customer_name, state,
+count(customer_id) OVER(PARTITION BY state) AS Count_cust
+FROM customer_order;
