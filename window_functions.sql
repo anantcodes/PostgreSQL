@@ -66,3 +66,18 @@ rank() OVER (PARTITION BY state ORDER BY order_num DESC) AS rank_n,
 dense_rank() OVER (PARTITION BY state ORDER BY order_num DESC) AS dense_rank_n,
 ntile(5) OVER (PARTITION BY state ORDER BY order_num DESC) AS tile_n
 FROM customer_order) as a WHERE a.tile_n = 5; -- for bottom 20% customers
+
+
+/* Average function */
+
+SELECT * FROM customer_order;
+
+SELECT customer_id, customer_name, state, sales_tot as revenue,
+avg(sales_tot) OVER (PARTITION BY state) AS avg_revenue
+FROM customer_order;
+
+-- customers with less then average revenue
+
+SELECT * FROM (SELECT customer_id, customer_name, state, sales_tot as revenue,
+avg(sales_tot) OVER (PARTITION BY state) AS avg_revenue
+FROM customer_order) AS a WHERE a.revenue < a.avg_revenue;
