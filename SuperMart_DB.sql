@@ -399,3 +399,35 @@ SELECT CURRENT_TIMESTAMP, EXTRACT(hour from CURRENT_TIMESTAMP);
 SELECT order_date, ship_date, EXTRACT(epoch from (ship_date-order_date)) from sales; -- error
 
 SELECT order_date, ship_date, (EXTRACT(epoch from ship_date) - EXTRACT(epoch from order_date)) AS sec_taken FROM sales;
+
+/* PATTERN(STRING) MATCHING */
+
+/* Like commands */
+
+SELECT * FROM customer WHERE customer_name LIKE 'J%';
+
+SELECT * FROM customer WHERE customer_name LIKE '%Nelson%';
+
+SELECT * FROM customer WHERE customer_name LIKE '____ %';
+
+SELECT distinct city FROM customer WHERE city NOT LIKE 'S%';
+
+/* REG-EX: PAttern Matching using regular expression */
+
+CREATE TABLE users(id serial PRIMARY KEY, name character varying);
+
+INSERT INTO users (name) VALUES ('Alex'), ('Jon Snow'), ('Christopher'), ('Arya'),('Sandip Debnath'), ('Lakshmi'),('alex@gmail.com'),('@sandip5004'), ('lakshmi@gmail.com');
+
+SELECT * FROM customer
+WHERE customer_name ~* '^a+[a-z\s]+$';
+
+SELECT * FROM customer
+WHERE customer_name ~* '^(a|b|c|d)+[a-z\s]+$';
+
+SELECT * FROM customer
+WHERE customer_name ~* '^(a|b|c|d)[a-z]{3}\s[a-z]{4}$';
+
+SELECT * FROM users;
+
+SELECT * FROM users
+WHERE name ~* '[a-z0-9\.\-\_]+@[a-z0-9\-]+\.[a-z]{2,5}';
