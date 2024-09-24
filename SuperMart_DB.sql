@@ -275,3 +275,66 @@ CREATE INDEX mon_idx
 ON month_values(MM)
 
 DROP INDEX mon_idx;
+
+/* String functions */
+
+-- Length
+
+SELECT customer_name, length(customer_name) AS character_num
+FROM customer
+WHERE age > 30;
+
+SELECT customer_name, length(customer_name) AS character_num
+FROM customer
+WHERE length(customer_name) > 15;
+
+-- UPPER/LOWER
+
+SELECT upper('Anant Kanchan');
+
+SELECT lower('Anant Kanchan');
+
+-- REPLACE
+
+SELECT customer_name, country, REPLACE(country, 'United States', 'US') AS country_new FROM customer;
+
+SELECT customer_name, country, REPLACE(lower(country), 'united states', 'US') AS country_new FROM customer;
+
+-- TRIM, LTRIM, RTRIM
+
+SELECT TRIM(leading ' ' FROM '  Anant Kanchan  ');
+
+SELECT TRIM(trailing ' ' FROM '  Anant Kanchan  ');
+
+SELECT TRIM(both ' ' FROM '  Anant Kanchan  ');
+
+SELECT TRIM('  Anant Kanchan  ');
+
+SELECT RTRIM('  Anant Kanchan  ', ' ');
+
+SELECT LTRIM('  Anant Kanchan  ', ' ');
+
+-- Concatenation
+
+SELECT customer_name, city || ',' || state || ',' || country AS address FROM customer;
+
+-- SUBSTRING
+
+SELECT customer_id, customer_name,
+SUBSTRING (customer_id FOR 2) AS cust_group
+FROM customer
+WHERE SUBSTRING (customer_id FOR 2) = 'AB';
+
+SELECT customer_id, customer_name,
+SUBSTRING (customer_id FROM 4 FOR 5) AS cust_group
+FROM customer
+WHERE SUBSTRING (customer_id FOR 2) = 'AB';
+
+-- String Aggregator
+
+SELECT * FROM sales ORDER BY order_id;
+
+SELECT order_id, string_agg(product_id,', ')
+FROM sales
+GROUP BY order_id
+ORDER BY order_id;
