@@ -115,3 +115,17 @@ SELECT *,
 SUM(sales) OVER (PARTITION BY state) AS sales_state_total,
 SUM(sales) OVER (PARTITION BY state ORDER BY order_date) AS running_total
 FROM order_rollup_state;
+
+/* LAG window functon */
+
+SELECT customer_id, order_date, order_id, sales,
+lag(sales,1) OVER(PARTITION BY customer_id ORDER BY order_date) AS previous_sales,
+lag(order_id,1) OVER(PARTITION BY customer_id ORDER BY order_date) AS previous_order_id
+FROM order_rollup_state;
+
+/* LEAD window functon */
+
+SELECT customer_id, order_date, order_id, sales,
+lead(sales,1) OVER(PARTITION BY customer_id ORDER BY order_date) AS next_sales,
+lead(order_id,1) OVER(PARTITION BY customer_id ORDER BY order_date) AS next_order_id
+FROM order_rollup_state;
