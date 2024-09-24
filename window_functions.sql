@@ -87,3 +87,24 @@ FROM customer_order) AS a WHERE a.revenue < a.avg_revenue;
 SELECT customer_id, customer_name, state,
 count(customer_id) OVER(PARTITION BY state) AS Count_cust
 FROM customer_order;
+
+/* TOTAL/SUM window function */
+
+SELECT * FROM sales;
+
+SELECT order_id, MAX(order_date) AS order_date, MAX(customer_id) AS customer_id, SUM(sales) AS sales 
+FROM sales GROUP BY order_id;
+
+CREATE TABLE order_rollup AS SELECT order_id, MAX(order_date) AS order_date, MAX(customer_id) AS customer_id, SUM(sales) AS sales 
+FROM sales GROUP BY order_id;
+
+CREATE TABLE order_rollup_state AS SELECT a.*, b.state
+FROM order_rollup AS a
+LEFT JOIN customer As b
+ON a.customer_id = b.customer_id;
+
+SELECT * FROM order_rollup_state;
+
+SELECT *,
+SUM(sales) OVER (PARTITION BY state) AS sales_state_total
+FROM order_rollup_state;
