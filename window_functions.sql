@@ -68,7 +68,7 @@ ntile(5) OVER (PARTITION BY state ORDER BY order_num DESC) AS tile_n
 FROM customer_order) as a WHERE a.tile_n = 5; -- for bottom 20% customers
 
 
-/* Average window function */
+/* Average function */
 
 SELECT * FROM customer_order;
 
@@ -82,13 +82,13 @@ SELECT * FROM (SELECT customer_id, customer_name, state, sales_tot as revenue,
 avg(sales_tot) OVER (PARTITION BY state) AS avg_revenue
 FROM customer_order) AS a WHERE a.revenue < a.avg_revenue;
 
-/* COUNT window function */
+/* COUNT function */
 
 SELECT customer_id, customer_name, state,
 count(customer_id) OVER(PARTITION BY state) AS Count_cust
 FROM customer_order;
 
-/* TOTAL/SUM window function */
+/* TOTAL/SUM function */
 
 SELECT * FROM sales;
 
@@ -109,23 +109,42 @@ SELECT *,
 SUM(sales) OVER (PARTITION BY state) AS sales_state_total
 FROM order_rollup_state;
 
-/* Running Total/SUM window function */
+/* Running Total/SUM function */
 
 SELECT *,
 SUM(sales) OVER (PARTITION BY state) AS sales_state_total,
 SUM(sales) OVER (PARTITION BY state ORDER BY order_date) AS running_total
 FROM order_rollup_state;
 
-/* LAG window functon */
+/* LAG functon */
 
 SELECT customer_id, order_date, order_id, sales,
 lag(sales,1) OVER(PARTITION BY customer_id ORDER BY order_date) AS previous_sales,
 lag(order_id,1) OVER(PARTITION BY customer_id ORDER BY order_date) AS previous_order_id
 FROM order_rollup_state;
 
-/* LEAD window functon */
+/* LEAD functon */
 
 SELECT customer_id, order_date, order_id, sales,
 lead(sales,1) OVER(PARTITION BY customer_id ORDER BY order_date) AS next_sales,
 lead(order_id,1) OVER(PARTITION BY customer_id ORDER BY order_date) AS next_order_id
 FROM order_rollup_state;
+
+/* COALESCE function */
+
+CREATE table emp_name(
+S_No int,
+First_name varchar(255),
+Middle_name varchar(255),
+Last_name varchar(255));
+
+INSERT INTO emp_name (S_No, First_name, Middle_name, Last_name) VALUES (1, 'Paul' , 'Van', 'Hugh');
+INSERT INTO emp_name (S_No, First_name, 			  Last_name) VALUES (2, 'David', 		 'Flashing');
+INSERT INTO emp_name (S_No, 			 Middle_name, Last_name) VALUES (3,   'Lena', 'Hugh');
+INSERT INTO emp_name (S_No, First_name,				  Last_name) VALUES (4, 'Henry' , 'Goldwyn');
+INSERT INTO emp_name (S_No,							  Last_name) VALUES (5,'Holden');
+INSERT INTO emp_name (S_No, First_name, Middle_name, Last_name) VALUES (6, 'Erin' , 'T', 'Mull');
+
+SELECT * FROM emp_name;
+
+SELECT *, COALESCE(First_name, Middle_name, Last_name) AS name_corr FROM emp_name;
