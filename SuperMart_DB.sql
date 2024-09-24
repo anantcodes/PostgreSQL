@@ -338,3 +338,41 @@ SELECT order_id, string_agg(product_id,', ')
 FROM sales
 GROUP BY order_id
 ORDER BY order_id;
+
+/* Mathematical functions */
+
+-- CEIL & FLOOR
+
+SELECT * FROM sales;
+
+SELECT order_line, sales, CEIL(sales), FLOOR(sales) FROM sales;
+
+-- Random
+
+-- a=10,b=50
+-- SELECT RANDOM()*(b-a)+a
+-- SELECT FLOOR(RANDOM()*(b-a+1))+a
+
+SELECT RANDOM(), RANDOM()*40+10, FLOOR(RANDOM()*40)+10;
+
+-- SETSEED
+
+SELECT SETSEED(0.5);
+
+SELECT RANDOM(); -- 0.9851677175347999
+SELECT RANDOM(); -- 0.825301858027981
+
+SELECT SETSEED(0.5);
+
+SELECT RANDOM(); -- 0.9851677175347999
+SELECT RANDOM(); -- 0.825301858027981
+
+-- ROUND
+
+SELECT order_line, sales, ROUND(sales) FROM sales ORDER BY sales DESC;
+
+-- POWER
+
+SELECT POWER(age,2), age FROM customer;
+
+SELECT age, POWER(age,2) FROM customer ORDER BY age;
