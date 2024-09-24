@@ -376,3 +376,26 @@ SELECT order_line, sales, ROUND(sales) FROM sales ORDER BY sales DESC;
 SELECT POWER(age,2), age FROM customer;
 
 SELECT age, POWER(age,2) FROM customer ORDER BY age;
+
+/* Date-Time Functions */
+
+-- Current Date & Time
+
+SELECT CURRENT_DATE, CURRENT_TIME, CURRENT_TIME(1), CURRENT_TIMESTAMP;
+
+-- Age
+
+SELECT age('2014-04-25', '2014-01-01');
+
+SELECT order_line, order_date, ship_date, age(ship_date, order_date) AS time_taken
+FROM sales ORDER BY time_taken DESC;
+
+-- EXTRACT
+
+SELECT EXTRACT (day from CURRENT_DATE);
+
+SELECT CURRENT_TIMESTAMP, EXTRACT(hour from CURRENT_TIMESTAMP);
+
+SELECT order_date, ship_date, EXTRACT(epoch from (ship_date-order_date)) from sales; -- error
+
+SELECT order_date, ship_date, (EXTRACT(epoch from ship_date) - EXTRACT(epoch from order_date)) AS sec_taken FROM sales;
