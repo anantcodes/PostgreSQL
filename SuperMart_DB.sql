@@ -515,3 +515,13 @@ CREATE TABLE customer_test (i int) TABLESPACE NewSpace;
 
 SELECT * FROM pg_tablespace;
 
+
+/* Performance tuning */
+
+-- EXPLAIN
+
+EXPLAIN SELECT * FROM customer;
+
+EXPLAIN SELECT DISTINCT * FROM customer;
+
+EXPLAIN VERBOSE SELECT * FROM customer;
