@@ -505,3 +505,13 @@ SELECT * FROM pg_user;
 SELECT DISTINCT usename FROM pg_stat_activity;
 
 SELECT DISTINCT * FROM pg_stat_activity;
+
+
+/* TABLESPACE */
+
+CREATE TABLESPACE NewSpace LOCATION '.............'; --enter location in ''
+
+CREATE TABLE customer_test (i int) TABLESPACE NewSpace;
+
+SELECT * FROM pg_tablespace;
+
