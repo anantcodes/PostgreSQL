@@ -446,3 +446,13 @@ SELECT order_date, TO_CHAR(order_date,'Month DD YY') FROM sales;
 SELECT order_date, TO_CHAR(order_date,'MONTH DD YY') FROM sales;
 
 SELECT order_date, TO_CHAR(order_date,'MONTH DAY YY') FROM sales;
+
+/* Converting Strings to Numbers/date  */
+
+SELECT TO_DATE('2019/01/15','YYYY/MM/DD');
+
+SELECT TO_DATE('26122018','DDMMYYYY');
+
+SELECT TO_NUMBER('2056.987','9999.999');
+
+SELECT TO_NUMBER('$2,056.987','L9,999.999');
