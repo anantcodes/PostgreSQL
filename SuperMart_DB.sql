@@ -412,7 +412,7 @@ SELECT * FROM customer WHERE customer_name LIKE '____ %';
 
 SELECT distinct city FROM customer WHERE city NOT LIKE 'S%';
 
-/* REG-EX: PAttern Matching using regular expression */
+/* REG-EX: Pattern Matching using regular expression */
 
 CREATE TABLE users(id serial PRIMARY KEY, name character varying);
 
@@ -431,3 +431,18 @@ SELECT * FROM users;
 
 SELECT * FROM users
 WHERE name ~* '[a-z0-9\.\-\_]+@[a-z0-9\-]+\.[a-z]{2,5}';
+
+
+/* Converting Numbers/date to String */
+
+SELECT sales, 'Total sales value for this order is' || TO_CHAR(sales,'9999.99') AS message FROM sales;
+
+SELECT sales, 'Total sales value for this order is   ' || TO_CHAR(sales,'$9,999.99') AS message FROM sales;
+
+SELECT order_date, TO_CHAR(order_date,'DDMMYY') FROM sales;
+
+SELECT order_date, TO_CHAR(order_date,'Month DD YY') FROM sales;
+
+SELECT order_date, TO_CHAR(order_date,'MONTH DD YY') FROM sales;
+
+SELECT order_date, TO_CHAR(order_date,'MONTH DAY YY') FROM sales;
