@@ -456,3 +456,52 @@ SELECT TO_DATE('26122018','DDMMYYYY');
 SELECT TO_NUMBER('2056.987','9999.999');
 
 SELECT TO_NUMBER('$2,056.987','L9,999.999');
+
+
+/* User Access Control Functions */
+
+/* CREATE USER */
+
+CREATE USER anant
+WITH PASSWORD 'coder';
+-- or
+CREATE USER anant
+WITH PASSWORD 'coder'
+VALID UNTIL 'Jan 1,2025';
+-- or
+CREATE USER anant
+WITH PASSWORD 'coder'
+VALID UNTIL 'infinity';
+
+/* GRANT & REVOKE */
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON products TO anant;
+
+GRANT ALL ON products TO anant;
+
+GRANT SELECT ON products TO PUBLIC;
+
+REVOKE ALL ON products FROM anant;
+
+REVOKE DELETE ON products FROM anant;
+
+/* DROP USER */
+
+DROP USER anant;
+
+/* RENAME USER */
+
+ALTER USER anant
+RENAME TO anantcodes;
+
+/* FIND ALL USERS */
+
+SELECT usename FROM pg_user;
+
+SELECT * FROM pg_user;
+
+/* FIND LOGGED-IN USERS */
+
+SELECT DISTINCT usename FROM pg_stat_activity;
+
+SELECT DISTINCT * FROM pg_stat_activity;
